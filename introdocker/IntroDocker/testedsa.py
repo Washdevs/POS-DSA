@@ -1,0 +1,1 @@
+print("Olá, bem vindo ao container docker criado por Washington")
