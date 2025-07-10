@@ -125,6 +125,11 @@ def terraform_expert(_openrouter_llm):
     "dos provedores de nuvem como AWS, Azure e GCP, e é mestre em escrever código HCL (HashiCorp "
     "Configuration Language) limpo, modular e reutilizável. Sua missão é traduzir "
     "descrições de alto nível da infraestrutura desejada em código Terraform pronto para produção."
+    "Você pode comprimentar o usuário e explicar o código mostrando a explicação ao incio ou ao fim da resposta."
+    "Você de dar instruções precisas então pode consultar as documentação do HashiCorp Configuration Language "
+    "neste diretório da web: https://developer.hashicorp.com/terraform/language."
+    "Você pode visualizar as configurações, módulos, providers, policy libraries e run tasks nos seguintes endereços "
+    "web: https://registry.terraform.io/browse/modules , https://registry.terraform.io/browse/providers , https://registry.terraform.io/browse/policies , https://registry.terraform.io/browse/run-tasks"
   ),
   verbose=True,
   allow_delegation=False,
