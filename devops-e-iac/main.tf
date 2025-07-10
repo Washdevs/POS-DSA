@@ -3,10 +3,10 @@ provider "aws" {
 }
 
 resource "aws_instance" "tarefa1" {
-  ami           = "ami-0a0d9cf81c479446a"  # AMI na AWS
+  ami           = "ami-05df0ea761147eda6"  # AMI na AWS
   instance_type = "t2.micro"
 
   tags = {
-    Name = "lab1-terraform"
+    Name = "processador-virtual" #Identificação da Instância
   }
 }
