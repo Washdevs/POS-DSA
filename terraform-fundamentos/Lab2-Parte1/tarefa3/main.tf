@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "instance_1" {
-  ami           = var.ami
+  ami           = var.ami_id
   instance_type = var.instance_type
   subnet_id     = var.subnets[0]
 
@@ -13,7 +13,7 @@ resource "aws_instance" "instance_1" {
 }
 
 resource "aws_instance" "instance_2" {
-  ami           = var.ami
+  ami           = var.ami_id
   instance_type = var.instance_type
   subnet_id     = var.subnets[1]
 
