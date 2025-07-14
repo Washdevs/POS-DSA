@@ -11,7 +11,7 @@ variable "instance_type" {
 }
 
 variable "vpc_ids" {
-    description = "IDs das VPCs onde instancias EC2 serão criadas"
+    description = "ID das VPCs onde instancias EC2 serão criadas"
     type list(string)
 }
 
