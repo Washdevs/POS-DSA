@@ -1,23 +1,9 @@
-provider "aws" {
-  region = var.region
-}
+module "dsa_ec2_instances" {
 
-resource "aws_instance" "instance_1" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
-  subnet_id     = var.subnets[0]
-
-  tags = {
-    Name = "DSA Instance 1"
-  }
-}
-
-resource "aws_instance" "instance_2" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
-  subnet_id     = var.subnets[1]
-
-  tags = {
-    Name = "DSA Instance 2"
-  }
+source "./modules/ec2-instances"
+  
+  instance_count  = 2
+  ami_id          = "ami-0eb9d6fc9fab44d24"
+  instance_type   = "t2.micro"
+  subnet_id       = "subnet-0263b2195d301ca3b"
 }
