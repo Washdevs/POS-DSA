@@ -22,6 +22,9 @@ RUN mkdir /lab2
 
 # Copiar pasta local para a pasta /lab2 no container
 COPY tarefa1/ /lab2/tarefa1/
+COPY tarefa2/ /lab2/tarefa2/
+COPY tarefa3/ /lab2/tarefa3/
+COPY tarefa4/ /lab2/tarefa4/
 
 # Criar a pasta Downloads e instalar o AWS CLI (para acessar a AWS)
 RUN mkdir Downloads && \
