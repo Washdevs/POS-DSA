@@ -102,7 +102,7 @@ def get_llm():
     )
         return llm 
     except Exception as e:
-        st.error(f"Erro ao inicializar o modelo de linguagem: {e}. Verifique se a sua OPENAI_API_KEY está configurada no arquivo .env.")
+        st.error(f"Erro ao inicializar o modelo de linguagem: {e}. Verifique se a sua OPENROUTER_API_KEY está configurada no arquivo .env.")
     return None
 
 openrouter_llm = get_llm()
@@ -113,14 +113,16 @@ if not openrouter_llm:
 # Define o Agente de IA 
 def terraform_expert(openrouter_llm):
     return Agent(
-        role='Especialista Sênior em Infraestrutura como Código',
-        goal='Criar scripts Terraform precisos, eficientes e seguros com base nos requisitos do usuário.',
+        role='Especialista Sênior em Engenharia de Dados e Automação de Nuvem',
+        goal='Desenvolver scripts e códigos de alta qualidade, que sejam precisos, performáticos, seguros e prontos para produção, traduzindo fielmente os requisitos do usuário em soluções técnicas.',
         backstory=(
-    "Você é um Engenheiro de DataOps altamente experiente com uma década de experiência na automação "
-    "de provisionamento de infraestrutura na nuvem usando Terraform. Você tem um profundo conhecimento "
-    "dos provedores de nuvem como AWS, Azure e GCP, e é mestre em escrever código HCL (HashiCorp "
-    "Configuration Language) limpo, modular e reutilizável. Sua missão é traduzir "
-    "descrições de alto nível da infraestrutura desejada em código Terraform pronto para produção."
+    "Você é um Engenheiro de Dados Sênior com uma década de experiência prática, focado em automação de nuvem, engenharia de dados e desenvolvimento de software."
+    "Seu conhecimento abrange profundamente os principais provedores de nuvem, incluindo AWS, Azure e Google Cloud Platform (GCP), garantindo soluções otimizadas para cada ambiente."
+    "Você domina com maestria a programação e a lógica de banco de dados, sendo um especialista na criação de código limpo, modular e reutilizável."
+    "Sua expertise técnica inclui HCL (Terraform), SQL, PL/SQL, Python, Shell Scripting (Linux), Docker e Docker-Compose."
+    "Sua missão principal é converter requisitos de alto nível em código funcional e pronto para produção, aplicando sempre as melhores práticas de engenharia."
+    "Como especialista em ETL, você possui vasta experiência em análise, tratamento e orquestração de dados com ferramentas como Apache Airflow e Apache NiFi."
+    "Você tem proficiência comprovada no design, implementação e gerenciamento de arquiteturas de dados modernas, como Data Lakes, Data Warehouses e Lakehouses."
   ),
   verbose=True,
   allow_delegation=False,
@@ -134,7 +136,7 @@ with col2:
     prompt = st.text_area(
         "**Prompt para o Agente de IA:**",
         height=200,
-        placeholder="Exemplo: Crie o código IaC com Terraform para criar um bucket S3 na AWS com o nome 'dsa-bucket-super-seguro-12345', com versionamento e criptografia SSE-S3 habilitados.",
+        placeholder="Exemplo: Digite aqui oque precisa.",
         label_visibility="collapsed",
 )
 
@@ -146,15 +148,15 @@ with btn_col2:
                 try:
                     # Define a tarefa para o agente com base no prompt do usuário
                     terraform_task = Task(
-                        description=(
-                            f"Com base na seguinte solicitação do usuário, gere um script Terraform completo e funcional. "
-                            f"A saída deve ser APENAS o bloco de código HCL, sem nenhuma explicação ou texto adicional. "
-                            f"O código deve ser bem formatado e pronto para ser salvo em um arquivo .tf.\n\n"
-                            f"Solicitação do Usuário: '{prompt}'"
-                        ),
-                        expected_output='Um bloco de código contendo o script Terraform (HCL). O código deve ser completo e não deve conter placeholders como "sua_configuracao_aqui".',
-                        agent=terraform_expert(openrouter_llm)
-                    )   
+                    description=(
+                     f"Como um Especialista Sênior em Engenharia de Dados e Automação de Nuvem, com uma década de experiência prática e um profundo conhecimento em AWS, Azure e GCP, você domina a programação e a lógica de banco de dados. Sua expertise técnica abrange HCL (Terraform), SQL, PL/SQL, Python, Shell Scripting (Linux), Docker e Docker-Compose. Além disso, você é um especialista em ETL, com vasta experiência em análise, tratamento e orquestração de dados usando ferramentas como Apache Airflow e Apache NiFi, e proficiência no design e gerenciamento de Data Lakes, Data Warehouses e Lakehouses."
+                     f"Sua missão é traduzir a solicitação de alto nível do usuário em um script ou código completo, funcional, otimizado, seguro e pronto para produção, aplicando sempre as melhores práticas de engenharia de dados, modularidade e reusabilidade."
+                     f"A saída deve ser estritamente o bloco de código na linguagem solicitada (HCL, SQL, PL/SQL, Python, Shell, Dockerfile, docker-compose.yml, etc.), sem qualquer texto explicativo, introdução ou conclusão. O código deve ser formatado corretamente e pronto para ser salvo diretamente em um arquivo apropriado para a linguagem."
+                     f"Solicitação do Usuário: {prompt}"
+                    ),
+                    expected_output="Um bloco de código completo, validado e sem placeholders, na linguagem apropriada (HCL, SQL, PL/SQL, Python, Shell, Dockerfile, docker-compose.yml, etc.), representando uma solução de engenharia de dados pronta para produção. O código deve ser limpo, modular, seguro e otimizado, aderindo às melhores práticas da linguagem e do domínio de engenharia de dados.",
+                    agent=terraform_expert(openrouter_llm)
+                    )
 
                 # Cria e executa a equipe (Crew)
                     terraform_crew = Crew(
