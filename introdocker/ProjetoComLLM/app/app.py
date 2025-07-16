@@ -70,30 +70,29 @@ st.markdown("""
     }
     /* Estiliza as abas para um visual mais limpo */
     .stTabs [data-baseweb="tab-list"] {
-		gap: 24px;
-	}
-	.stTabs [data-baseweb="tab"] {
-		height: 50px;
-        white-space: pre-wrap;
-		background-color: transparent;
-		border-radius: 4px 4px 0px 0px;
-		gap: 1px;
-		padding-top: 10px;
-		padding-bottom: 10px;
+        gap: 24px;
     }
-	.stTabs [aria-selected="true"] {
-  		background-color: #F0F2F6; /* Cor de fundo da aba ativa */
-	}
+    .stTabs [data-baseweb="tab"] {
+        height: 50px;
+        white-space: pre-wrap;
+        background-color: transparent;
+        border-radius: 4px 4px 0px 0px;
+        gap: 1px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #F0F2F6; /* Cor de fundo da aba ativa */
+    }
     .stTextArea textarea {
-    resize: none;
-
+        resize: none;
+    }
 </style>
 """, unsafe_allow_html=True)
 
 st.markdown('<p class="header">Mistral está Aqui</p>', unsafe_allow_html=True)
 st.markdown('<p class="subheader">Descreva a infraestrutura desejada de forma clara e detalhada. O agente de IA irá traduzir sua necessidade em código Terraform pronto para uso.</p>', unsafe_allow_html=True)
 
-@st.cache_resource
 def get_llm():
     try:
         llm = ChatOpenAI(
@@ -108,8 +107,10 @@ def get_llm():
 
 openrouter_llm = get_llm()
 
+if not openrouter_llm:
+        st.stop()
+
 # Define o Agente de IA 
-@st.cache_resource
 def terraform_expert(openrouter_llm):
     return Agent(
         role='Especialista Sênior em Infraestrutura como Código',
@@ -135,8 +136,8 @@ with col2:
         height=200,
         placeholder="Exemplo: Crie o código IaC com Terraform para criar um bucket S3 na AWS com o nome 'dsa-bucket-super-seguro-12345', com versionamento e criptografia SSE-S3 habilitados.",
         label_visibility="collapsed",
-
 )
+
 btn_col1, btn_col2, btn_col3 = st.columns([2, 0.5, 2])
 with btn_col2:
     if st.button("Gerar Script Terraform", disabled=(not openrouter_llm)):
@@ -152,12 +153,12 @@ with btn_col2:
                             f"Solicitação do Usuário: '{prompt}'"
                         ),
                         expected_output='Um bloco de código contendo o script Terraform (HCL). O código deve ser completo e não deve conter placeholders como "sua_configuracao_aqui".',
-                        agent=terraform_expert
+                        agent=terraform_expert(openrouter_llm)
                     )   
 
                 # Cria e executa a equipe (Crew)
                     terraform_crew = Crew(
-                        agents=[terraform_expert],
+                        agents=[terraform_expert(openrouter_llm)],
                         tasks=[terraform_task],
                         process=Process.sequential,
                     )
