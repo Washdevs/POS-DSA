@@ -1,7 +1,3 @@
-# Estudo de Caso - Deploy de App com Docker e Agente de IA Para Provisionamento de Infraestrutura com IaC
-#=================================================
-# ARQUIVO: app/app.py
-#=================================================
 # Este é o script da aplicação para criar a interface de usuário e gerenciar a interação com o Agente de IA.
 import os
 import streamlit as st
