@@ -1,0 +1,29 @@
+Vamos planejar e implementar um projeto de DW na nuvem através de IAC
+
+Objetivo: 
+Não apresentar projeto e Sim Aprender
+
+Saber implementar qualquer serviço em nuvem é relevante para qualquer profissional
+
+terraform serve para criar a infraestrutura de forma automatizada e podendo interligar varios serviçoes em um projeto,
+segurança, banco, vm, etc... em apenas uma estrutura.
+
+Amazon Redshift, consegue construit um DW com todas as configurações necessárias para performance, acessoa via sql, ferramentas BI, automação via IAC,
+Concorre com Google Big Query e Snowflake.
+Redshift é mais completo e robusto e se integra aos serviços da Amazon AWS.
+
+Para configurar no AWS precisamsos criar um cluster par ao Redshift.
+
+1 - Identificador = Chave exclusiva,
+2 - Escolher o tamanho do cluster.
+3 - Tipo de nó e quantidade, mostra o preço estimado por nó.
+4 - Funções do IAM para definir regras para usuários.
+5 - VPC toda instancia fica dentro de uma vpc, e da pra configurar o ambiente de rede do nosso jeito por ela.
+6 - configurações do Banco de Dados:
+Configurações do banco, nome, porta, grupos de parâmetros.
+7 - Manutenção:
+usar a jantela de Manutenção padrão ou usar a própria ex de uso: backup, reindexação, cópia de tabela etc...
+8 - Monitoramento:
+Configurar o cloudwatuc para disparar um alarme para sempre que algo em especifico acontecer, como um exception esperado.
+9 - Backup:
+Através de snapshot, backup ocupa disco.
