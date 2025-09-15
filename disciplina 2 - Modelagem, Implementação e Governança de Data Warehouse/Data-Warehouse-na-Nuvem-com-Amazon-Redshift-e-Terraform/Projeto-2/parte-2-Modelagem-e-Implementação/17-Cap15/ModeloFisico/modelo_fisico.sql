@@ -58,3 +58,28 @@ CREATE TABLE IF NOT EXISTS dsaschema.fato_vendas
     CONSTRAINT fato_vendas_sk_produto_fkey FOREIGN KEY (sk_produto) REFERENCES dsaschema.dim_produto (sk_produto),
     CONSTRAINT fato_vendas_sk_tempo_fkey FOREIGN KEY (sk_tempo) REFERENCES dsaschema.dim_tempo (sk_tempo)
 );
+
+COPY dsaschema.dim_cliente
+FROM 's3://dsa-fonte-2-445567084196/dados/dim_cliente.csv'
+IAM_ROLE 'arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
+CSV;
+
+COPY dsaschema.dim_localidade
+FROM 's3://dsa-fonte-2-445567084196/dados/dim_localidade.csv'
+IAM_ROLE 'arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
+CSV;
+
+COPY dsaschema.dim_produto
+FROM 's3://dsa-fonte-2-445567084196/dados/dim_produto.csv'
+IAM_ROLE 'arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
+CSV;
+
+COPY dsaschema.dim_tempo
+FROM 's3://dsa-fonte-2-445567084196/dados/dim_tempo.csv'
+IAM_ROLE 'arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
+CSV;
+
+COPY dsaschema.fato_vendas
+FROM 's3://dsa-fonte-2-445567084196/dados/fato_vendas.csv'
+IAM_ROLE 'arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess'
+CSV;
