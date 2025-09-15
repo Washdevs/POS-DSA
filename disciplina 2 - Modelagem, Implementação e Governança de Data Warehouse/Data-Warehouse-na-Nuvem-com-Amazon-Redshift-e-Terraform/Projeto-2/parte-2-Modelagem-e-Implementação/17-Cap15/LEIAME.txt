@@ -40,7 +40,7 @@ terraform apply
 
 13- Copie o endpoint do seu cluster Redshift e ajuste o comando abaixo e então execute no terminal do container dentro da pasta etapa2. Digite a senha (dsaS9curePassw2rd) quando solicitado.
 
-psql -h redshift-cluster.cbwssuxzxipm.us-east-2.redshift.amazonaws.com -U adminuser -d dsadb -p 5439 -f modelo_fisico.sql
+psql -h redshift-cluster.chcdylqrpdtp.us-east-2.redshift.amazonaws.com -U adminuser -d dsadb -p 5439 -f modelo_fisico.sql
 
 14- Edite o arquivo redshift.tf e acrescente a linha abaixo como mostrado nas aulas em vídeo. 
 
