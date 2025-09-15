@@ -83,8 +83,12 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   node_type          = "ra3.large"
   number_of_nodes    = 1
 
+  publicly_accessible = true
+
   vpc_security_group_ids = [aws_security_group.redshift_sg.id]
   cluster_subnet_group_name = aws_redshift_subnet_group.redshift_subnet_group.name
+
+  iam_roles = [aws_iam_role.redshift_role.arn]
 
   skip_final_snapshot = true
 }
