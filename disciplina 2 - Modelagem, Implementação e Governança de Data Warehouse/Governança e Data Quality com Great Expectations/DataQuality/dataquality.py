@@ -47,7 +47,3 @@ print(f"Resultado da Análise: {result}")
 
 # Visualiza o resultado da validação no contexto do Great Expectations
 context.view_validation_result(checkpoint_result)
-
-
-
-
