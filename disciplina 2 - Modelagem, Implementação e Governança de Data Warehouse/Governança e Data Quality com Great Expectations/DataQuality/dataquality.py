@@ -1,3 +1,6 @@
+from pathlib import Path, PureWindowsPath
+import webbrowser
+
 # Script de Validações e Expectativas Para Testes de Qualidade de Dados
 
 # Importa a biblioteca Great Expectations para validação de dados
@@ -47,3 +50,7 @@ print(f"Resultado da Análise: {result}")
 
 # Visualiza o resultado da validação no contexto do Great Expectations
 context.view_validation_result(checkpoint_result)
+
+p = PureWindowsPath(r"C:\Users\washi\AppData\Local\Temp\tmp3lgwwmb5\validations\default\__none__\20250919T030040.480454Z\default_pandas_datasource-#ephemeral_pandas_asset.html")
+uri = Path(p).as_uri() 
+webbrowser.open(uri)  
