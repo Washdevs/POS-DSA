@@ -7,7 +7,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 # Cria o motor de conexão (ATENÇÃO COM A STRING DE CONEXÃO ABAIXO!!!!!!)
-engine = create_engine('postgresql+psycopg2://was:was123@localhost:5432/prod')
+engine = create_engine('postgresql+psycopg2://dsa:dsa1010@localhost:5959/dsadb')
 
 print("\nIniciando o Processo de Carga dos Dados!\n")
 

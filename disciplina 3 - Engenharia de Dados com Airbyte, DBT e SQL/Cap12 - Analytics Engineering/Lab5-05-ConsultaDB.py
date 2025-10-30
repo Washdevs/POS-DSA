@@ -54,4 +54,3 @@ def dsa_executa_script_sql(filename):
 
 # Executa o script SQL
 dsa_executa_script_sql('Lab5-04-Consulta.sql')
-

@@ -31,18 +31,17 @@ def dsa_gera_insights():
     
     # Define a consulta SQL para obter dados dos clientes, compras e produtos
     query = """
-        SELECT 
+        select
             c.nome,
-            COUNT(p.id_compra) AS total_compras,
-            SUM(pr.preco) AS total_gasto
-        FROM 
+            count(co.id_compra ) as total_compras,
+            sum(p.preco) as total_gasto
+        from
             lab5.clientes c
-        JOIN 
-            lab5.compras p ON c.id_cliente = p.id_cliente
-        JOIN 
-            lab5.produtos pr ON p.id_produto = pr.id_produto
-        GROUP BY 
-            c.nome;
+        join 
+            lab5.compras co on co.id_cliente = c.id_cliente
+        join 
+            lab5.produtos p on co.id_produto = p.id_produto
+        group by c.nome;
     """
     
     # Executa a consulta SQL

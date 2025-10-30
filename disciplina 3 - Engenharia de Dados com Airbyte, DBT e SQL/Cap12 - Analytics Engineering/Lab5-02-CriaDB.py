@@ -9,11 +9,11 @@ def dsa_executa_script_sql(filename):
     
     # Conecta ao banco de dados PostgreSQL com as credenciais fornecidas
     conn = psycopg2.connect(
-        dbname="prod",
-        user="was",
-        password="was123",
+        dbname="dsadb",
+        user="dsa",
+        password="dsa1010",
         host="localhost",
-        port="5432"
+        port="5959"
     )
 
     # Abre um cursor para realizar operações no banco de dados
